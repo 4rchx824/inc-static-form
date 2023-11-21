@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-export const formTitle = z.string().min(1).max(64);
-
 export const staticForm = z.object({
   Question1: z
     .string({
