@@ -6,7 +6,7 @@ import {
   FormMessage,
 } from "../../form";
 import { Textarea } from "../../textarea";
-import { AutoFormInputComponentProps } from "../types";
+import type { AutoFormInputComponentProps } from "../types";
 
 export default function AutoFormTextarea({
   label,
@@ -14,7 +14,9 @@ export default function AutoFormTextarea({
   fieldConfigItem,
   fieldProps,
 }: AutoFormInputComponentProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { showLabel: _showLabel, ...fieldPropsWithoutShowLabel } = fieldProps;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const showLabel = _showLabel === undefined ? true : _showLabel;
   return (
     <FormItem>
