@@ -1,14 +1,12 @@
-import { getServerAuthSession } from "@/server/auth";
-import type {  GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import EditFormTemplate from "@/components/EditFormTemplate";
 import { useRouter } from "next/router";
 import { api } from "@/utils/api";
 import { toast } from "sonner";
 import Loading from "@/components/Loading";
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getServerAuthSession(ctx);
-
   return {
     props: { isViewing: true, form_id: ctx.params?.id },
   };
