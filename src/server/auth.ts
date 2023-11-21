@@ -4,7 +4,6 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
-  Awaitable,
 } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 

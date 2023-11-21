@@ -10,38 +10,60 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+// I Need 3 tables
+// 1. Store form data (e.g. owner, id, title)
+// 2. Store form template (e.g. version, form_id, createdAt, updatedAt)
+// 3. Store form responses (e.g. form_id, response_id, createdAt, updatedAt)
+
+// 1 User can have many forms
+// 1 Form can one form template (form templates store form schema and config in JSON)
+// 1 Form template can have many responses (responses [VALUES] are stored in JSON also)
+
+// When adding form elements into template, unique element ID is generated
 model Form {
-    form_id  String     @id @default(cuid())
-    title    String
-    formData FormData[]
+    form_id String @id @default(cuid())
+    title   String
+    ownerId String
+    requiresLogin Boolean @default(false)
+
+    formSchema    Json?
+    formConfig    Json?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    User         User           @relation(fields: [ownerId], references: [id])
+    FormResponse FormResponse[]
 }
 
-model FormData {
-    version_id String   @id @default(cuid())
-    form_id    String
-    
-    createdAt  DateTime @default(now()) 
-    updatedAt  DateTime @updatedAt
-    form       Form     @relation(fields: [form_id], references: [form_id])
-}
+model FormResponse {
+    form_response_id String  @id @default(cuid())
+    form_id          String
+    values           Json
+    filledBy         String?
 
+    submittedAt DateTime @default(now())
+
+    FilledByUser User? @relation(fields: [filledBy], references: [id])
+    Form         Form  @relation(fields: [form_id], references: [form_id])
+}
 
 // Necessary for Next auth
 model Account {
-    id                String  @id @default(cuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? // @db.Text
+    id                       String  @id @default(cuid())
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String? // @db.Text
     refresh_token_expires_in Int?
-    access_token      String? // @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? // @db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    access_token             String? // @db.Text
+    expires_at               Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String? // @db.Text
+    session_state            String?
+    user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
 }
@@ -55,19 +77,13 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String         @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?        @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
-}
-
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
-
-    @@unique([identifier, token])
+    forms         Form[]
+    FormsFilled   FormResponse[]
 }
