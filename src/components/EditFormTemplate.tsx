@@ -8,6 +8,7 @@ import { api } from "@/utils/api";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
 import type { z } from "zod";
+import type { FieldConfig } from "./ui/auto-form/types";
 
 const formSchema = staticForm;
 
@@ -28,11 +29,7 @@ const EditFormTemplate = ({
   isViewing?: boolean;
 }) => {
   const router = useRouter();
-  const {
-    mutate: submit,
-    isLoading,
-    isError,
-  } = api.forms.response.useMutation({
+  const { mutate: submit } = api.forms.response.useMutation({
     onSuccess: () => {
       toast.success("Form submitted!");
       void router.push(`/`);
@@ -53,7 +50,9 @@ const EditFormTemplate = ({
           submit({ form_id: data.form_id, values: formData })
         }
         formSchema={formSchema}
-        fieldConfig={{ ...fieldconfig }}
+        fieldConfig={{
+          ...(fieldconfig as FieldConfig<z.infer<typeof formSchema>>),
+        }}
       >
         {(isViewing ?? false) && <Button className="mt-4">Submit</Button>}
       </AutoForm>
