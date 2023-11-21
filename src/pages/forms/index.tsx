@@ -46,7 +46,7 @@ const Page: NextPage = () => {
   const router = useRouter();
   const [cmdListOpen, setCmdListOpen] = useState(false);
   const [formTitle, setFormTitle] = useState("");
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [, setDialogOpen] = useState(false);
   const ctx = api.useUtils();
 
   const { mutate: createForm, isLoading: isCreating } =
