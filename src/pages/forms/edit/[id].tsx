@@ -1,5 +1,5 @@
 import React from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps } from "next";
 import { getServerAuthSession } from "@/server/auth";
 import { api } from "@/utils/api";
 import Loading from "@/components/Loading";
@@ -10,7 +10,6 @@ import EditFormTemplate from "@/components/EditFormTemplate";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,

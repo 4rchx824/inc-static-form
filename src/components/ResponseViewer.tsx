@@ -13,6 +13,7 @@ import _debounce from "lodash/debounce";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { useRouter } from "next/router";
+import type { FieldConfig } from "@/components/ui/auto-form/types";
 dayjs.extend(localizedFormat);
 
 const formSchema = staticForm;
@@ -55,14 +56,14 @@ function ResponseViewer({ data }: { data: { form_response_id: string }[] }) {
   useEffect(() => {
     void refetch();
     setValues(fetchedResponse?.values as Partial<z.infer<typeof formSchema>>);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIdx]);
 
   useEffect(() => {
     () => {
       debouncedHandleChange(values);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { mutate: deleteResponse } = api.forms.deleteFormResponse.useMutation({
@@ -120,7 +121,9 @@ function ResponseViewer({ data }: { data: { form_response_id: string }[] }) {
           debouncedHandleChange(values);
         }}
         formSchema={formSchema}
-        fieldConfig={{ ...fieldconfig }}
+        fieldConfig={{
+          ...(fieldconfig as FieldConfig<z.infer<typeof formSchema>>),
+        }}
       ></AutoForm>
 
       <Button

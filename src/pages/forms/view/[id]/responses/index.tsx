@@ -29,7 +29,7 @@ const ResponsePage = ({ form_id }: { form_id: string }) => {
 
   return (
     <div className="flex items-center justify-center pt-12">
-      <ResponseViewer data={data} />
+      <ResponseViewer data={data!} />
     </div>
   );
 };

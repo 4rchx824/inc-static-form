@@ -6,9 +6,7 @@ import {
   publicProcedure,
 } from "@/server/api/trpc";
 
-import { formTitle } from "@/utils/validation";
 import { TRPCError } from "@trpc/server";
-import { JsonValue } from "@prisma/client/runtime/library";
 
 export const formRouter = createTRPCRouter({
   findResponseCountByFormId: protectedProcedure
@@ -120,6 +118,7 @@ export const formRouter = createTRPCRouter({
       const { form_response_id } = await ctx.db.formResponse.create({
         data: {
           form_id: input.form_id,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           values: input.values,
         },
       });
@@ -184,6 +183,7 @@ export const formRouter = createTRPCRouter({
           },
         },
         data: {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           values: input.formData,
         },
       });
