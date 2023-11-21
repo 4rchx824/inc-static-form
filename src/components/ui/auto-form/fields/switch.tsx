@@ -1,6 +1,6 @@
 import { FormControl, FormDescription, FormItem, FormLabel } from "../../form";
 import { Switch } from "../../switch";
-import { AutoFormInputComponentProps } from "../types";
+import type { AutoFormInputComponentProps } from "../types";
 
 export default function AutoFormSwitch({
   label,
@@ -13,6 +13,7 @@ export default function AutoFormSwitch({
     <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
       <FormControl>
         <Switch
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           checked={field.value}
           onCheckedChange={field.onChange}
           {...fieldProps}

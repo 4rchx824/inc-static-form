@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Checkbox } from "../../checkbox";
 import { FormControl, FormDescription, FormItem, FormLabel } from "../../form";
-import { AutoFormInputComponentProps } from "../types";
+import type { AutoFormInputComponentProps } from "../types";
 
 export default function AutoFormCheckbox({
   label,

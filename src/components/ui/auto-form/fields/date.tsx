@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { DatePicker } from "../../date-picker";
 import {
   FormControl,
@@ -6,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../../form";
-import { AutoFormInputComponentProps } from "../types";
+import type { AutoFormInputComponentProps } from "../types";
 
 export default function AutoFormDate({
   label,

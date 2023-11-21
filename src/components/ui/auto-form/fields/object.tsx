@@ -1,6 +1,11 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { FieldConfig, FieldConfigItem } from "../types";
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type * as z from "zod";
+import type { useForm } from "react-hook-form";
+import type { FieldConfig, FieldConfigItem } from "../types";
 import {
   Accordion,
   AccordionContent,

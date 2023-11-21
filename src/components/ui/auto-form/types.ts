@@ -1,6 +1,7 @@
-import { ControllerRenderProps, FieldValues } from "react-hook-form";
-import * as z from "zod";
-import { INPUT_COMPONENTS } from "./config";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ControllerRenderProps, FieldValues } from "react-hook-form";
+import type * as z from "zod";
+import type { INPUT_COMPONENTS } from "./config";
 
 export type FieldConfigItem = {
   description?: React.ReactNode;

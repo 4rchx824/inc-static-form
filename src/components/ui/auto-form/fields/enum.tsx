@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   FormControl,
   FormDescription,
@@ -12,9 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../select";
-import { AutoFormInputComponentProps } from "../types";
+import type { AutoFormInputComponentProps } from "../types";
 import { getBaseSchema } from "../utils";
-import * as z from "zod";
+import type * as z from "zod";
 
 export default function AutoFormEnum({
   label,

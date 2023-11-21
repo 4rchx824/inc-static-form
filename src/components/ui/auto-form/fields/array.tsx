@@ -1,5 +1,6 @@
-import { useFieldArray, useForm } from "react-hook-form";
-import * as z from "zod";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useFieldArray, type useForm } from "react-hook-form";
+import type * as z from "zod";
 import { beautifyObjectName } from "../utils";
 import {
   AccordionContent,
