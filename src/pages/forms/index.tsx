@@ -29,6 +29,8 @@ import { getServerAuthSession } from "@/server/auth";
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerAuthSession(ctx);
 
+  console.log(ctx);
+
   if (!session)
     return {
       redirect: {

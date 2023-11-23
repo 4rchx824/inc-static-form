@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { env } from "@/env.mjs";
 
-const Page = ({ form_id }: { form_id: string }) => {
+const Page = ({ form_id, baseUrl }: { form_id: string; baseUrl: string }) => {
   const router = useRouter();
   const { data, isLoading, isError } = api.forms.findById.useQuery({
     form_id: form_id,
@@ -74,7 +75,7 @@ const Page = ({ form_id }: { form_id: string }) => {
           </DialogHeader>
 
           <Input
-            value={`localhost:3000/forms/view/${form_id}`}
+            value={`${baseUrl}/forms/view/${form_id}`}
             className="text-black"
             contentEditable={false}
           />
@@ -106,6 +107,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
 
   return {
-    props: { form_id: ctx.params?.id },
+    props: { form_id: ctx.params?.id, baseUrl: env.NEXTAUTH_URL },
   };
 };
