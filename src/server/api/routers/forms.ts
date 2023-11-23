@@ -107,7 +107,7 @@ export const formRouter = createTRPCRouter({
 
       return { form_id };
     }),
-  response: protectedProcedure
+  response: publicProcedure
     .input(
       z.object({
         form_id: z.string(),
